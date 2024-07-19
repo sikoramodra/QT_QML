@@ -1,93 +1,186 @@
 import QtQuick
+import content
 
 Window {
     id: root
 
     width: 640
     height: 480
-
     title: "Hello World"
     visible: true
-
-    color: "#000"
-
-    Rectangle {
-        id: rectangle
-
-        // property bool testProp: true
-        // signal testSignal()
-
-        // property real rotationSq: 0.0
-
-        anchors.centerIn: parent
-
-        width: 200
-        height: 200
-
-        color: "#fff"
-
-        // rotation: mouseArea.containsPress ? 45 : 0
-        // rotation: rectangle.rotationSq
-        radius: width / 4
-
-        Behavior on rotation {
-            PropertyAnimation {
-                duration: 200
-            }
-        }
-
-        MouseArea {
-            id: mouseArea
-
-            anchors.fill: parent
-
-            onClicked: {
-                rectangle.rotation += 90;
-            }
-
-        }
-    }
+    color: "#9CE"
 
     Rectangle {
-        anchors {
-            top: parent.verticalCenter
-            horizontalCenter: parent.horizontalCenter
-            topMargin: 150
-        }
+        id: topbar
 
-        width: 50
         height: 50
 
-        color: "#f00"
-
-        radius: width / 4
-
-        Text {
-            id: buttonText
-
-            anchors.centerIn: parent
-            text: "✕"
-
-            font.pixelSize: 40
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
         }
 
-        MouseArea {
-            id: closeArea
-
-            anchors.fill: parent
-
-            onClicked: {
-                Qt.quit()
+        gradient: Gradient {
+            GradientStop {
+                position: 0
+                color: "#666"
             }
+
+            GradientStop {
+                position: 1
+                color: "transparent"
+            }
+
         }
+
     }
 
-    // function rotateSq() {
-    //     rectangle.rotationSq++;
-    //     if (rectangle.rotationSq <= 360) {
-    //         requestAnimationFrame(rotateSq);
-    //     } else {
-    //         rectangle.rotationSq = 0.0;
-    //     }
-    // }
+    Rectangle {
+        id: main
+
+        anchors {
+            top: topbar.bottom
+            bottom: bottombar.top
+        }
+
+        AudioBox {
+            id: firstSong
+
+            songIndex: 0
+            title: "test123"
+            author: "wm"
+            imageColor: "#F00"
+
+            anchors {
+                verticalCenter: parent.verticalCenter
+                left: parent.left
+                right: parent.right
+                margins: 20
+            }
+
+        }
+
+        AudioBox {
+            id: secondSong
+
+            songIndex: 1
+            title: "test222"
+            author: "wm"
+            imageColor: "#00F"
+
+            anchors {
+                verticalCenter: parent.verticalCenter
+                left: parent.left
+                right: parent.right
+                margins: 20
+            }
+
+        }
+
+        AudioBox {
+            id: thirdSong
+
+            songIndex: 2
+            title: "test333"
+            author: "wm"
+            imageColor: "#0F0"
+
+            anchors {
+                verticalCenter: parent.verticalCenter
+                left: parent.left
+                right: parent.right
+                margins: 20
+            }
+
+        }
+
+    }
+
+    Rectangle {
+        id: bottombar
+
+        height: 100
+
+        anchors {
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+        }
+
+        Row {
+            anchors.centerIn: parent
+            spacing: 20
+
+            TextButton {
+                id: previousButton
+
+                width: 50
+                height: 50
+                text: "←"
+                onClicked: playerController.switchToPreviousSong()
+            }
+
+            TextButton {
+                id: playPauseButton
+
+                width: 50
+                height: 50
+                text: playerController.playing ? "⏸" : "⏵"
+                onClicked: playerController.playPause()
+            }
+
+            TextButton {
+                id: nextButton
+
+                width: 50
+                height: 50
+                text: "→"
+                onClicked: playerController.switchToNextSong()
+            }
+
+        }
+
+        gradient: Gradient {
+            GradientStop {
+                position: 0
+                color: "transparent"
+            }
+
+            GradientStop {
+                position: 1
+                color: "#666"
+            }
+
+        }
+
+    }
+
+    QtObject {
+        id: playerController
+
+        property int currentSongIndex: 0
+        property int songCount: 3
+        property bool playing: false
+
+        function playPause() {
+            playing = !playing;
+        }
+
+        function switchToPreviousSong() {
+            if (currentSongIndex > 0)
+                currentSongIndex--;
+            else
+                currentSongIndex = songCount - 1;
+        }
+
+        function switchToNextSong() {
+            if (currentSongIndex + 1 >= songCount)
+                currentSongIndex = 0;
+            else
+                currentSongIndex++;
+        }
+
+    }
+
 }
