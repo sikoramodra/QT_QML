@@ -8,12 +8,12 @@ Window {
     height: 480
     title: "Hello World"
     visible: true
-    color: "#9CE"
+    color: "#222"
 
     Rectangle {
         id: topbar
 
-        height: 50
+        height: 0
 
         anchors {
             top: parent.top
@@ -50,7 +50,7 @@ Window {
             songIndex: 0
             title: "test123"
             author: "wm"
-            imageColor: "#F00"
+            imageSource: "images/song-image-default.png"
 
             anchors {
                 verticalCenter: parent.verticalCenter
@@ -67,7 +67,7 @@ Window {
             songIndex: 1
             title: "test222"
             author: "wm"
-            imageColor: "#00F"
+            imageSource: "images/song-image-default.png"
 
             anchors {
                 verticalCenter: parent.verticalCenter
@@ -84,7 +84,7 @@ Window {
             songIndex: 2
             title: "test333"
             author: "wm"
-            imageColor: "#0F0"
+            imageSource: "images/song-image-default.png"
 
             anchors {
                 verticalCenter: parent.verticalCenter
@@ -101,6 +101,7 @@ Window {
         id: bottombar
 
         height: 100
+        color: "#333"
 
         anchors {
             bottom: parent.bottom
@@ -112,44 +113,31 @@ Window {
             anchors.centerIn: parent
             spacing: 20
 
-            TextButton {
+            ImageButton {
                 id: previousButton
 
                 width: 50
                 height: 50
-                text: "←"
+                source: "images/arrow-left-circle.svg"
                 onClicked: playerController.switchToPreviousSong()
             }
 
-            TextButton {
+            ImageButton {
                 id: playPauseButton
 
                 width: 50
                 height: 50
-                text: playerController.playing ? "⏸" : "⏵"
+                source: playerController.playing ? "images/pause-circle.svg" : "images/play-circle.svg"
                 onClicked: playerController.playPause()
             }
 
-            TextButton {
+            ImageButton {
                 id: nextButton
 
                 width: 50
                 height: 50
-                text: "→"
+                source: "images/arrow-right-circle.svg"
                 onClicked: playerController.switchToNextSong()
-            }
-
-        }
-
-        gradient: Gradient {
-            GradientStop {
-                position: 0
-                color: "transparent"
-            }
-
-            GradientStop {
-                position: 1
-                color: "#666"
             }
 
         }

@@ -6,11 +6,11 @@ Item {
     required property int songIndex
     property alias title: titleText.text
     property alias author: authorText.text
-    property alias imageColor: albumImage.color
+    property alias imageSource: albumImage.source
 
     visible: playerController.currentSongIndex === root.songIndex
 
-    Rectangle {
+    Image {
         id: albumImage
 
         width: 100

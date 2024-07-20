@@ -6,5 +6,11 @@ qt6_add_qml_module(
   VERSION 0.1
   QML_FILES 
     AudioBox.qml
-    TextButton.qml
+    ImageButton.qml
+  RESOURCES
+    images/song-image-default.png
+    images/play-circle.svg
+    images/pause-circle.svg
+    images/arrow-left-circle.svg
+    images/arrow-right-circle.svg
 )
