@@ -1,5 +1,6 @@
 import QtQuick
 import content
+import src
 
 Window {
     id: root
@@ -11,36 +12,10 @@ Window {
     color: "#222"
 
     Rectangle {
-        id: topbar
-
-        height: 0
-
-        anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-        }
-
-        gradient: Gradient {
-            GradientStop {
-                position: 0
-                color: "#666"
-            }
-
-            GradientStop {
-                position: 1
-                color: "transparent"
-            }
-
-        }
-
-    }
-
-    Rectangle {
         id: main
 
         anchors {
-            top: topbar.bottom
+            top: parent.top
             bottom: bottombar.top
         }
 
@@ -50,7 +25,6 @@ Window {
             songIndex: 0
             title: "test123"
             author: "wm"
-            imageSource: "images/song-image-default.png"
 
             anchors {
                 verticalCenter: parent.verticalCenter
@@ -67,7 +41,6 @@ Window {
             songIndex: 1
             title: "test222"
             author: "wm"
-            imageSource: "images/song-image-default.png"
 
             anchors {
                 verticalCenter: parent.verticalCenter
@@ -84,7 +57,6 @@ Window {
             songIndex: 2
             title: "test333"
             author: "wm"
-            imageSource: "images/song-image-default.png"
 
             anchors {
                 verticalCenter: parent.verticalCenter
@@ -119,7 +91,7 @@ Window {
                 width: 50
                 height: 50
                 source: "images/arrow-left-circle.svg"
-                onClicked: playerController.switchToPreviousSong()
+                onClicked: PlayerController.switchToPreviousSong()
             }
 
             ImageButton {
@@ -127,8 +99,8 @@ Window {
 
                 width: 50
                 height: 50
-                source: playerController.playing ? "images/pause-circle.svg" : "images/play-circle.svg"
-                onClicked: playerController.playPause()
+                source: PlayerController.playing ? "images/pause-circle.svg" : "images/play-circle.svg"
+                onClicked: PlayerController.playPause()
             }
 
             ImageButton {
@@ -137,36 +109,9 @@ Window {
                 width: 50
                 height: 50
                 source: "images/arrow-right-circle.svg"
-                onClicked: playerController.switchToNextSong()
+                onClicked: PlayerController.switchToNextSong()
             }
 
-        }
-
-    }
-
-    QtObject {
-        id: playerController
-
-        property int currentSongIndex: 0
-        property int songCount: 3
-        property bool playing: false
-
-        function playPause() {
-            playing = !playing;
-        }
-
-        function switchToPreviousSong() {
-            if (currentSongIndex > 0)
-                currentSongIndex--;
-            else
-                currentSongIndex = songCount - 1;
-        }
-
-        function switchToNextSong() {
-            if (currentSongIndex + 1 >= songCount)
-                currentSongIndex = 0;
-            else
-                currentSongIndex++;
         }
 
     }

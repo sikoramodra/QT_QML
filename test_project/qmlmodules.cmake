@@ -5,6 +5,7 @@ qt_add_qml_module(
   QML_FILES Main.qml
 )
 
+add_subdirectory(src)
 add_subdirectory(content)
 
-target_link_libraries(app PRIVATE app_content)
+target_link_libraries(app PRIVATE app_content app_src)

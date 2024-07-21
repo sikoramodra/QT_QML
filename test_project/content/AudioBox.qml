@@ -1,4 +1,5 @@
 import QtQuick
+import src
 
 Item {
     id: root
@@ -8,13 +9,14 @@ Item {
     property alias author: authorText.text
     property alias imageSource: albumImage.source
 
-    visible: playerController.currentSongIndex === root.songIndex
+    visible: PlayerController.currentSongIndex === root.songIndex
 
     Image {
         id: albumImage
 
         width: 100
         height: 100
+        source: "images/song-image-default.png"
 
         anchors {
             verticalCenter: parent.verticalCenter
