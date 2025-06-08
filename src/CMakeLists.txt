@@ -5,5 +5,5 @@ qt_add_qml_module(musicplayer_src
     VERSION 1.0
     SOURCES
         PlayerController.cpp
-        PlayerController.h
+        PlayerController.hpp
 )
