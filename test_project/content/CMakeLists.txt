@@ -1,7 +1,7 @@
-qt_add_library(app_content STATIC)
+qt_add_library(musicplayer_content STATIC)
 
-qt_add_qml_module(app_content
-    URI MusicPlayer.Components
+qt_add_qml_module(musicplayer_content
+    URI "content"
     VERSION 1.0
     QML_FILES
         AudioBox.qml
@@ -14,7 +14,7 @@ qt_add_qml_module(app_content
         images/arrow-right-circle.svg
 )
 
-target_link_libraries(app_content PRIVATE
-    Qt6::Core
-    Qt6::Quick
-)
+# target_link_libraries(app_content PRIVATE
+#     Qt6::Core
+#     Qt6::Quick
+# )
