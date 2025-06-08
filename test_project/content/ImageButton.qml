@@ -5,7 +5,7 @@ Item {
 
     property alias source: image.source
 
-    signal clicked()
+    signal clicked
 
     Image {
         id: image
@@ -19,9 +19,9 @@ Item {
 
         anchors.fill: parent
         hoverEnabled: true
+
         onClicked: {
             root.clicked();
         }
     }
-
 }

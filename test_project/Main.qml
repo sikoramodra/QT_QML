@@ -5,75 +5,71 @@ import src
 Window {
     id: root
 
-    width: 640
+    color: "#222"
     height: 480
     title: "Hello World"
     visible: true
-    color: "#222"
+    width: 640
 
     Rectangle {
         id: main
 
         anchors {
-            top: parent.top
             bottom: bottombar.top
+            top: parent.top
         }
 
         AudioBox {
             id: firstSong
 
+            author: "wm"
             songIndex: 0
             title: "test123"
-            author: "wm"
 
             anchors {
-                verticalCenter: parent.verticalCenter
                 left: parent.left
-                right: parent.right
                 margins: 20
+                right: parent.right
+                verticalCenter: parent.verticalCenter
             }
-
         }
 
         AudioBox {
             id: secondSong
 
+            author: "wm"
             songIndex: 1
             title: "test222"
-            author: "wm"
 
             anchors {
-                verticalCenter: parent.verticalCenter
                 left: parent.left
-                right: parent.right
                 margins: 20
+                right: parent.right
+                verticalCenter: parent.verticalCenter
             }
-
         }
 
         AudioBox {
             id: thirdSong
 
+            author: "wm"
             songIndex: 2
             title: "test333"
-            author: "wm"
 
             anchors {
-                verticalCenter: parent.verticalCenter
                 left: parent.left
-                right: parent.right
                 margins: 20
+                right: parent.right
+                verticalCenter: parent.verticalCenter
             }
-
         }
-
     }
 
     Rectangle {
         id: bottombar
 
-        height: 100
         color: "#333"
+        height: 100
 
         anchors {
             bottom: parent.bottom
@@ -88,32 +84,32 @@ Window {
             ImageButton {
                 id: previousButton
 
-                width: 50
                 height: 50
                 source: "images/arrow-left-circle.svg"
+                width: 50
+
                 onClicked: PlayerController.switchToPreviousSong()
             }
 
             ImageButton {
                 id: playPauseButton
 
-                width: 50
                 height: 50
                 source: PlayerController.playing ? "images/pause-circle.svg" : "images/play-circle.svg"
+                width: 50
+
                 onClicked: PlayerController.playPause()
             }
 
             ImageButton {
                 id: nextButton
 
-                width: 50
                 height: 50
                 source: "images/arrow-right-circle.svg"
+                width: 50
+
                 onClicked: PlayerController.switchToNextSong()
             }
-
         }
-
     }
-
 }

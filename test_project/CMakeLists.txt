@@ -1,39 +1,66 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.21)
 
-project(test_project VERSION 0.1 LANGUAGES CXX)
+project(music_player
+    VERSION 1.0.0
+    DESCRIPTION "Qt6 QML Music Player Application"
+    LANGUAGES CXX
+)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-qt_standard_project_setup(REQUIRES 6.5)
+find_package(Qt6 6.9 REQUIRED COMPONENTS
+    Core
+    Quick
+    Qml
+)
 
-qt_add_executable(app main.cpp)
+qt_standard_project_setup(REQUIRES 6.9)
 
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1. If
-# you are developing for iOS or macOS you should consider setting an explicit,
-# fixed bundle identifier manually though.
-set_target_properties(
-    app
-    PROPERTIES # MACOSX_BUNDLE_GUI_IDENTIFIER com.example.app
-        MACOSX_BUNDLE_BUNDLE_VERSION
-        ${PROJECT_VERSION}
-        MACOSX_BUNDLE_SHORT_VERSION_STRING
-        ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-        MACOSX_BUNDLE
-        TRUE
-        WIN32_EXECUTABLE
-        TRUE
+qt_add_executable(music_player
+    main.cpp
+)
+
+set_target_properties(music_player PROPERTIES
+    MACOSX_BUNDLE TRUE
+    WIN32_EXECUTABLE TRUE
+    MACOSX_BUNDLE_BUNDLE_VERSION
+    ${PROJECT_VERSION}
+    MACOSX_BUNDLE_SHORT_VERSION_STRING
+    ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+    MACOSX_BUNDLE_GUI_IDENTIFIER "com.musicplayer.app"
+    OUTPUT_NAME "MusicPlayer"
 )
 
 include(qmlmodules.cmake)
 
-target_link_libraries(app PRIVATE Qt6::Quick)
+target_link_libraries(music_player PRIVATE
+    Qt6::Core
+    Qt6::Quick
+    Qt6::Qml
+    app_content
+    app_src
+)
+
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(music_player PRIVATE
+        -Wall -Wextra -Wpedantic
+        $<$<CONFIG:Debug>:-g -O0>
+        $<$<CONFIG:Release>:-O3 -DNDEBUG>
+    )
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    target_compile_options(music_player PRIVATE
+        /W4
+        $<$<CONFIG:Debug>:/Od /Zi>
+        $<$<CONFIG:Release>:/O2 /DNDEBUG>
+    )
+endif()
 
 include(GNUInstallDirs)
-install(
-    TARGETS app
+install(TARGETS music_player
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}

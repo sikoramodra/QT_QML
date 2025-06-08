@@ -4,25 +4,24 @@ import src
 Item {
     id: root
 
-    required property int songIndex
-    property alias title: titleText.text
     property alias author: authorText.text
     property alias imageSource: albumImage.source
+    required property int songIndex
+    property alias title: titleText.text
 
     visible: PlayerController.currentSongIndex === root.songIndex
 
     Image {
         id: albumImage
 
-        width: 100
         height: 100
         source: "images/song-image-default.png"
+        width: 100
 
         anchors {
-            verticalCenter: parent.verticalCenter
             left: parent.left
+            verticalCenter: parent.verticalCenter
         }
-
     }
 
     Text {
@@ -32,8 +31,8 @@ Item {
         wrapMode: Text.WordWrap
 
         font {
-            pixelSize: 20
             bold: true
+            pixelSize: 20
         }
 
         anchors {
@@ -42,7 +41,6 @@ Item {
             margins: 20
             right: parent.right
         }
-
     }
 
     Text {
@@ -58,10 +56,8 @@ Item {
         anchors {
             bottom: parent.verticalCenter
             left: titleText.left
-            topMargin: 5
             right: parent.right
+            topMargin: 5
         }
-
     }
-
 }
