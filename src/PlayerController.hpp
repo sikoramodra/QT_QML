@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QObject>
-#include <qqmlintegration.h>
+#include <QtQmlIntegration>
 
 class PlayerController : public QObject {
     Q_OBJECT

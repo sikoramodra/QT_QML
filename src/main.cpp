@@ -1,6 +1,6 @@
 #include "PlayerController.hpp"
-#include <qguiapplication.h>
-#include <qqmlapplicationengine.h>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
 
 int main(int argc, char *argv[]) {
     QGuiApplication app(argc, argv);
