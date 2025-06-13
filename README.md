@@ -31,38 +31,38 @@ pac -S cmake clang ninja qt6-base qt6-doc qt6-examples qt6-languageserver qt6-to
 ```sh
 MusicPlayer/
 ├── CMakeLists.txt
-├── qmlmodules.cmake
-├── Main.qml
-│
-├── src/                              # C++ backend source files
+├── src/
 │   ├── CMakeLists.txt
 │   ├── main.cpp
-│   ├── controllers/*Controller.?pp   # Business logic controllers
-│   ├── models/*Model.?pp             # Data models
-│   └── utils/*.?pp                   # Utility classes
-│
-├── qml/                              # QML UI files (renamed from content)
+│   ├── core/
+│   │   ├── Application.{h,c}pp
+│   │   └── Settings.{h,c}pp
+│   ├── controllers/
+│   │   └── *Controller.{c,h}pp
+│   ├── models/
+│   │   └── *Model.{c,h}pp
+│   ├── services/
+│   │   ├── *Service.{h,c}pp
+│   └── utils/*.{c,h}pp
+│       └── *.{c,h}pp
+├── qml/
 │   ├── CMakeLists.txt
-│   ├── components/*.qml              # Reusable UI components
-│   └── views/*View.qml               # Main application views
-│
-└── resources/                        # Static resources
-    ├── qrc/                          # Qt resource files
-    │   ├── icons.qrc
-    │   ├── images.qrc
-    │   ├── fonts.qrc
-    │   └── shaders.qrc
+│   ├── Main.qml
+│   ├── components/
+│   │   └── *.qml
+│   └── views/
+│       └── *View.qml
+└── resources/
+    ├── qml.qrc         # Single QRC for QML files
+    ├── resources.qrc   # Single QRC for other resources
+    ├── icons/
     ├── images/
-    │   ├── icons/
-    │   │   ├── arrow-left-circle.svg
-    │   │   ├── arrow-right-circle.svg
-    │   │   ├── pause-circle.svg
-    │   │   └── play-circle.svg
-    │   ├── backgrounds/*
-    │   ├── logos/*
+    │   ├── backgrounds/
+    │   ├── logos/
     │   └── defaults/
     │       └── song-image-default.png
-    ├── fonts/*                       # ~ Custom fonts
-    ├── shaders/*.{frag,vert}         # ~ GLSL shaders for effects
-    └── audio/*                       # ~ Sample audio files
+    ├── fonts/
+    ├── shaders/
+    │   └── *.{frag,vert}
+    └── audio/
 ```
