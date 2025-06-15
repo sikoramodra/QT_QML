@@ -1,6 +1,6 @@
-qt6_add_library(Settings STATIC)
+qt_add_library(Settings STATIC)
 
-qt6_add_qml_module(Settings
+qt_add_qml_module(Settings
     URI com.rpgroove.settings
     OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/src/com/rpgroove/settings
     QML_FILES

@@ -1,0 +1,40 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "base",
+      "displayName": "base preset",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build-${presetName}",
+      "installDir": "${sourceDir}/build-${presetName}",
+      "hidden": true
+    },
+    {
+      "name": "dev",
+      "displayName": "Build as debug",
+      "binaryDir": "${sourceDir}/build",
+      "installDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "QT_QML_GENERATE_QMLLS_INI": "ON"
+      },
+      "inherits": ["base"]
+    },
+    {
+      "name": "release",
+      "displayName": "Build as release mode.",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      },
+      "inherits": ["base"]
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "dev",
+      "configurePreset": "dev"
+    },
+    { "name": "release", "configurePreset": "release" }
+  ]
+}

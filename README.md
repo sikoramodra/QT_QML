@@ -1,17 +1,15 @@
 #### Debug
 
 ```sh
-mkdir ./build
-cmake -S . -B ./build -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DQT_QML_GENERATE_QMLLS_INI=ON
-cmake --build ./build
+  cmake --preset dev
+  cmake --build --preset dev
 ```
 
 #### Release
 
 ```sh
-mkdir ./build
-cmake -S . -B ./build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS_RELEASE="-O3 -march=native -mtune=native -DNDEBUG -flto" -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON
-cmake --build ./build
+  cmake --preset release
+  cmake --build --preset release
 ```
 
 #### Qmllint

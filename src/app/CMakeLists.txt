@@ -34,7 +34,10 @@ target_link_libraries(rpgroove-app PRIVATE
     rpgrooveplugin
 )
 
-set_target_properties(rpgroove-app PROPERTIES OUTPUT_NAME "rpgroove")
+set_target_properties(rpgroove-app PROPERTIES
+    OUTPUT_NAME "rpgroove"
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
+)
 
 install(TARGETS rpgroove-app
     BUNDLE  DESTINATION .
