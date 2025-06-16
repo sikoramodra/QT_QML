@@ -23,7 +23,7 @@
     },
     {
       "name": "release",
-      "displayName": "Build as release mode.",
+      "displayName": "Build as release",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release"
       },
@@ -35,6 +35,9 @@
       "name": "dev",
       "configurePreset": "dev"
     },
-    { "name": "release", "configurePreset": "release" }
+    {
+      "name": "release",
+      "configurePreset": "release"
+    }
   ]
 }

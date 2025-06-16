@@ -1,6 +1,5 @@
 # Builds
-build
-cmake-build*
+build*
 
 # LSP
 .cache

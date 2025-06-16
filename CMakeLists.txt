@@ -5,13 +5,20 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(rpgroove VERSION 0.0.0)
 
-find_package(Qt6 6.6 REQUIRED COMPONENTS
+find_package(Qt6 6.9 REQUIRED COMPONENTS
     Core
     Gui
     Qml
     Quick
     QuickControls2
 )
+
+# if(ANDROID)
+#     find_package(Qt6 REQUIRED COMPONENTS Core5Compat)
+
+#     set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+#     set(QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+# endif()
 
 add_definitions(
     -DQT_NO_CAST_FROM_ASCII
