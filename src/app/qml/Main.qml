@@ -1,8 +1,7 @@
 import QtQuick
+import QtQuick.Controls
 
-// import QtQuick.Controls
-
-Window {
+ApplicationWindow {
     id: root
 
     color: "#222"

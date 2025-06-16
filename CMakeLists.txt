@@ -13,12 +13,10 @@ find_package(Qt6 6.9 REQUIRED COMPONENTS
     QuickControls2
 )
 
-# if(ANDROID)
-#     find_package(Qt6 REQUIRED COMPONENTS Core5Compat)
-
-#     set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-#     set(QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-# endif()
+if(ANDROID)
+    find_package(Qt6 REQUIRED COMPONENTS Core5Compat)
+    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+endif()
 
 add_definitions(
     -DQT_NO_CAST_FROM_ASCII
@@ -31,7 +29,7 @@ add_definitions(
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-qt6_policy(SET QTP0001 NEW)
-qt6_policy(SET QTP0004 NEW)
+qt_policy(SET QTP0001 NEW)
+qt_policy(SET QTP0004 NEW)
 
 add_subdirectory(src)

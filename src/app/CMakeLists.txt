@@ -23,12 +23,6 @@ target_link_libraries(rpgroove PUBLIC
     Qt6::QuickControls2
 )
 
-# # Create the executable
-# if(ANDROID)
-#     qt_add_executable(rpgroove-app main.cpp)
-# else()
-#     add_executable(rpgroove-app main.cpp)
-# endif()
 add_executable(rpgroove-app main.cpp)
 
 target_include_directories(rpgroove-app PRIVATE ${CMAKE_BINARY_DIR})
@@ -43,19 +37,14 @@ set_target_properties(rpgroove-app PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
 )
 
-# if(ANDROID)
-#     set_target_properties(rpgroove-app PROPERTIES
-#         QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_SOURCE_DIR}/android"
-#         QT_ANDROID_MIN_SDK_VERSION 23
-#         QT_ANDROID_TARGET_SDK_VERSION 34
-#     )
+if(ANDROID)
+    set_target_properties(rpgroove-app PROPERTIES
+        QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_SOURCE_DIR}/android
+    )
 
-#     set_target_properties(rpgroove-app PROPERTIES
-#         QT_ANDROID_PACKAGE_NAME "com.rpgroove.app"
-#         QT_ANDROID_VERSION_CODE 1
-#         QT_ANDROID_VERSION_NAME "1.0.0"
-#     )
-# endif()
+    qt_android_generate_deployment_settings(rpgroove-app)
+    qt_android_add_apk_target(rpgroove-app)
+endif()
 
 install(TARGETS rpgroove-app
     BUNDLE  DESTINATION .
