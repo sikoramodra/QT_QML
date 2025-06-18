@@ -5,15 +5,13 @@
       "name": "base",
       "displayName": "base preset",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build-${presetName}",
-      "installDir": "${sourceDir}/build-${presetName}",
+      "binaryDir": "${sourceDir}/${presetName}",
+      "installDir": "${sourceDir}/${presetName}",
       "hidden": true
     },
     {
-      "name": "dev",
+      "name": "build",
       "displayName": "Build as debug",
-      "binaryDir": "${sourceDir}/build",
-      "installDir": "${sourceDir}/build",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
@@ -22,7 +20,7 @@
       "inherits": ["base"]
     },
     {
-      "name": "release",
+      "name": "build-release",
       "displayName": "Build as release",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release"
@@ -32,12 +30,12 @@
   ],
   "buildPresets": [
     {
-      "name": "dev",
-      "configurePreset": "dev"
+      "name": "build",
+      "configurePreset": "build"
     },
     {
-      "name": "release",
-      "configurePreset": "release"
+      "name": "build-release",
+      "configurePreset": "build-release"
     }
   ]
 }

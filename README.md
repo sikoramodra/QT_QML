@@ -28,6 +28,10 @@ qmllint -I build Main.qml
     QT_QPA_PLATFORM=xcb ./qt-online-installer-linux-x64-4.10.0.run
 ```
 
+```sh
+sudo pacman -S python-requests python-pyxdg python-yaml
+```
+
 - Qt ver.
   - Desktop
   - Android
@@ -36,20 +40,6 @@ qmllint -I build Main.qml
     - Qt lsp
     - QT shader tools
     - Qt wayland compositor
-
-```sh
-cmake -S . -B build-android-arm64-debug -G Ninja \
-    -DCMAKE_BUILD_TYPE=Debug \
-    -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_ROOT/build/cmake/android.toolchain.cmake \
-    -DANDROID_ABI=arm64-v8a \
-    -DANDROID_PLATFORM=android-35 \
-    -DQT_HOST_PATH=$QT_HOST_ROOT \
-    -DCMAKE_FIND_ROOT_PATH=$QT_ANDROID_ROOT
-
-cmake --build build-android-arm64-debug
-
-cmake --build build-android-arm64-debug --target apk
-```
 
 ```sh
 ├── CMakeLists.txt
@@ -72,4 +62,23 @@ cmake --build build-android-arm64-debug --target apk
     │   └── models
     │       └── *model.{hpp,cpp}
     └── OTHER_PLUGINS (like settings)
+```
+
+```sh
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug
+cmake --build build
+```
+
+export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
+
+```sh
+/opt/Qt/6.9.1/android_arm64_v8a/bin/qt-cmake -S . -B build-android-arm64-debug -G Ninja \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DQT_CHAINLOAD_TOOLCHAIN_FILE=/home/wm/Android/Sdk/ndk/29.0.13599879/build/cmake/android.toolchain.cmake \
+            -DANDROID_SDK_ROOT=/home/wm/Android/Sdk \
+            -DANDROID_ABI=arm64-v8a \
+            -DANDROID_PLATFORM=android-35 \
+            -DECM_DIR=/usr/share/ECM/cmake
+
+cmake --build build-android-arm64-debug
 ```

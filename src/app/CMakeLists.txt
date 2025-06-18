@@ -14,7 +14,7 @@ ecm_add_qml_module(rpgroove URI com.rpgroove GENERATE_PLUGIN_SOURCE
     #     com.rpgroove.settings
 )
 
-add_executable(rpgroove-app main.cpp)
+qt_add_executable(rpgroove-app main.cpp)
 
 target_include_directories(rpgroove-app PRIVATE ${CMAKE_BINARY_DIR})
 
